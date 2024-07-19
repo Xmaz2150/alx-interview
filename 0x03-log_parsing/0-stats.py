@@ -41,3 +41,5 @@ if __name__ == "__main__":
                 counter = 0
     except KeyboardInterrupt:
         print_stats(codes, tot_size)
+    finally:
+        print_stats(codes, tot_size)
