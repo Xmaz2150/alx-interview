@@ -8,7 +8,8 @@ import sys
 def print_stats(codes, tot_size):
     print("File size: {}".format(tot_size))
     for k, v in codes.items():
-        print("{}: {}".format(k, v))
+        if v != 0:
+            print("{}: {}".format(k, v))
 
 
 if __name__ == "__main__":
