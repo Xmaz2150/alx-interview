@@ -1,12 +1,15 @@
 #!/usr/bin/node
 
-const request = require('request-promise-native');
+const rq = require('request');
+const { promisify } = require('util');
+const request = promisify(rq);
+
 const argv = process.argv;
 
 const getMovie = async (fildId) => {
   const response = await request(`https://swapi-api.alx-tools.com/api/films/${fildId}`);
 
-  const movie = await JSON.parse(response);
+  const movie = await JSON.parse(response.body);
   return movie;
 };
 
@@ -20,7 +23,7 @@ const printCasts = async () => {
         for (const charRoute of v) {
           try {
             const response = await request(charRoute);
-            const character = JSON.parse(response);
+            const character = JSON.parse(response.body);
             console.log(character.name);
           } catch (error) {
             console.log('Character does not exist');
